@@ -15,33 +15,39 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   // 7-1. State 내부에 Notifier 변수 선언
   //      => Provider.of(context)로 리턴받은 notifier를 저장해놔야, 나중에 notifier의 내부 속성/메소드에 접근 가능
-  // late final NameChangeNotifier _notifier;
-  final TextEditingController _controller = TextEditingController();
+  late final NameChangeNotifier _notifier;
+  late final TextEditingController _controller;
+  bool _initialized = false;  // didChangeDependencies가 여러 번 호출되기 때문에 플래그 사용
 
-  /*
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // print("didChangeDependencies 호출됨");
 
-    // 이 방법은 실패
-    //======== Exception caught by widgets library =======================================================
-    // The following LateError was thrown building SettingsScreen(dirty, state: _SettingsScreenState#89888):
-    // LateInitializationError: Field '_notifier@721195070' has not been initialized.
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _notifier = NameNotifierProvider.of(context);
-      _controller = TextEditingController(text: _notifier.name,);
-    },);
-
-    // 이 방법도 실패
+    // 7-2. 초기화 시에 notifier 받아옴
+    //      (1) context.dependOnInheritedWidgetOfExactType() → _dependents 집합에 등록
+    //      (2) Provider의 Element(=InheritedNotifierElement) 내부에서 notifier.addListener(...) 호출
+    //      ==> (1) + (2) 과정을 끝낸 후 Provider 내부의 notifier(=NameChangeNotifier) 리턴
+    //
+    // **주의** 이 부분을 initState() 내부에서 실행하면 ==> Exception 발생
     // ======== Exception caught by widgets library =======================================================
-    // The following LateError was thrown building SettingsScreen(dirty, state: _SettingsScreenState#c95bf):
-    // LateInitializationError: Field '_notifier@721195070' has not been initialized.
-    Future.delayed(Duration.zero).then((value) {
+    // The following assertion was thrown building _VisibilityScope:
+    // dependOnInheritedWidgetOfExactType<NameNotifierProvider>() or dependOnInheritedElement() was called
+    // before _SettingsScreenState.initState() completed.
+    //
+    // When an inherited widget changes, for example if the value of Theme.of() changes, its dependent widgets are rebuilt.
+    // If the dependent widget's reference to the inherited widget is in a constructor or an initState() method,
+    // then the rebuilt dependent widget will not reflect the changes in the inherited widget.
+    //
+    // Typically references to inherited widgets should occur in widget build() methods.
+    // Alternatively, initialization based on inherited widgets can be placed in the didChangeDependencies method,
+    // which is called after initState and whenever the dependencies change thereafter.
+    if (!_initialized) {
       _notifier = NameNotifierProvider.of(context);
       _controller = TextEditingController(text: _notifier.name,);
-    },);
+      _initialized = true;
+    }
   }
-  */
 
   @override
   void dispose() {
@@ -51,10 +57,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // 7. build 내부에 Notifier 변수 선언
-    //    => Provider.of(context)로 리턴받은 notifier를 저장해놔야, 나중에 notifier의 내부 속성/메소드에 접근 가능
-    final NameChangeNotifier _notifier = NameNotifierProvider.of(context);
-
     // 8. Notifier의 값(state)을 참조하는 부분을 build()의 첫부분에 두어야 한다.
     //    ==> 그래야 매 빌드마다 최신 name을 읽어서 화면에 반영할 수 있다.
     final currentName = _notifier.name;
