@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'name_change_notifier.dart';
-import 'skeleton.dart';
+import 'main_screen.dart';
 
 // Youtube Provider Tutorial
 // https://www.youtube.com/watch?v=FUDhozpnTUw

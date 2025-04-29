@@ -13,10 +13,10 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
 
-  // 바디스크린 index
+  // body스크린 index
   int _screenIndex = 0;
 
-  // 스크린
+  // body스크린
   final List<Widget> _screens = [
     HomeScreen(),
     SettingsScreen(),
@@ -26,7 +26,10 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens[_screenIndex],
+      body: IndexedStack(
+        index: _screenIndex,
+        children: _screens,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _screenIndex,
         showSelectedLabels: false,
