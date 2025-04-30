@@ -23,22 +23,22 @@ class NameChangeNotifier extends ChangeNotifier {
 // - 아까 만든 ChangeNotifier(NameChangeNotifier)를 내부에 갖고 있으면서,
 // - 위젯 트리 최상단에 위치하여 하위의 모든 자식들이 내부 ChangeNotifier를 참조할 수 있게 해 주는 InheritedNotifier(InheritedWidget을 상속)
 // ==> 이것을 Provider라 부른다.
-class NameNotifierProvider extends InheritedNotifier<NameChangeNotifier> {
-  const NameNotifierProvider({
+class NameChangeNotifierProvider extends InheritedNotifier<NameChangeNotifier> {
+  const NameChangeNotifierProvider({
     super.key,
     required NameChangeNotifier super.notifier,   // NameChangeNotifier를 내부 notifier로 등록하는 부분
     required super.child,
   });
 
-  // 하위 위젯에서 NameChangeProvider.of(context)를 호출하면,
-  // NameChangeProvider의 내부 notifier(NameChangeNotifier) 인스턴스를 가져올 수 있다.
+  // 하위 위젯에서 NameChangeNotifierProvider.of(context)를 호출하면,
+  // NameChangeNotifierProvider의 내부 notifier(NameChangeNotifier) 인스턴스를 가져올 수 있다.
   //
-  // NameChangeProvider.of(context) 의 의미 = (1) + (2)
+  // NameChangeNotifierProvider.of(context) 의 의미 = (1) + (2)
   // (1) 위젯 트리에 의존성(dependency)을 등록하는 과정이다.
   //    = Provider(=가장 가까운 NameNotifierProvider)를 찾고 + 그 Provider의 Element 내부 _dependents라는 Set에 현재 context(=Element)를 등록
   // (2) Provider의 내부에 있는 notifier(=NameChangeNotifier)를 리턴함. ==> 받아서 NameChangeNotifier의 속성/메소드에 접근 가능
   static NameChangeNotifier of(BuildContext context) {
-    final provider = context.dependOnInheritedWidgetOfExactType<NameNotifierProvider>();
+    final provider = context.dependOnInheritedWidgetOfExactType<NameChangeNotifierProvider>();
     assert(provider != null, 'No NameNotifierProvider found in context');
     return provider!.notifier!;
   }

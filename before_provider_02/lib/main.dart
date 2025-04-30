@@ -31,7 +31,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     // 5. 사용자 최상위 위젯의 build에서 Provider를 리턴하는 구조로 만든다.
     //    + Provider의 child에 MaterialApp을 둔다.
-    return NameNotifierProvider(
+    return NameChangeNotifierProvider(
       notifier: _notifier,
       child: MaterialApp(
         theme: ThemeData(primarySwatch: Colors.teal),

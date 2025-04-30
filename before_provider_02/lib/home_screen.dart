@@ -11,7 +11,7 @@ class HomeScreen extends StatelessWidget {
     // 6. Provider(NameChangeNotifier)에 의존성 등록(dependOnInheritedWidgetOfExactType)
     //    + 내부 notifier(=NameChangeNotifier) 리턴받기
     //    + (내부 notifier의) name 속성 가져오기
-    final name = NameNotifierProvider.of(context).name;
+    final name = NameChangeNotifierProvider.of(context).name;
 
     return Scaffold(
       appBar: AppBar(title: const Text('Home')),

@@ -43,7 +43,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     // Alternatively, initialization based on inherited widgets can be placed in the didChangeDependencies method,
     // which is called after initState and whenever the dependencies change thereafter.
     if (!_initialized) {
-      _notifier = NameNotifierProvider.of(context);
+      _notifier = NameChangeNotifierProvider.of(context);
       _controller = TextEditingController(text: _notifier.name,);
       _initialized = true;
     }

@@ -53,7 +53,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     // 7. build 내부에 Notifier 변수 선언
     //    => Provider.of(context)로 리턴받은 notifier를 저장해놔야, 나중에 notifier의 내부 속성/메소드에 접근 가능
-    final NameChangeNotifier _notifier = NameNotifierProvider.of(context);
+    final NameChangeNotifier _notifier = NameChangeNotifierProvider.of(context);
 
     // 8. Notifier의 값(state)을 참조하는 부분을 build()의 첫부분에 두어야 한다.
     //    ==> 그래야 매 빌드마다 최신 name을 읽어서 화면에 반영할 수 있다.
