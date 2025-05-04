@@ -5,6 +5,7 @@ import 'providers/number_change_notifier.dart';
 import 'providers/name_change_notifier.dart';
 import 'main_screen.dart';
 
+
 // Youtube Provider Tutorial by FlutterMapp
 // https://www.youtube.com/watch?v=FUDhozpnTUw
 
@@ -30,9 +31,11 @@ import 'main_screen.dart';
   - 본질적으로는 provider의 내부 notifier 인스턴스가 리턴된다.
 */
 
+
 void main() {
   runApp(const MyApp());
 }
+
 
 // 사용자 최상위 앱
 class MyApp extends StatelessWidget {
