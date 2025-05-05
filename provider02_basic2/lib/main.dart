@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'providers/number_change_notifier.dart';
 import 'providers/name_change_notifier.dart';
-import 'main_screen.dart';
+import 'navigation.dart';
 
 
 // Youtube Provider Tutorial by FlutterMapp
@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(primarySwatch: Colors.teal,),
-        home: MainScreen(),
+        home: Navigation(),
       ),
     );
   }

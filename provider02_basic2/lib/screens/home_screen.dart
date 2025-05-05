@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'providers/number_change_notifier.dart';
-import 'providers/name_change_notifier.dart';
+import '../providers/number_change_notifier.dart';
+import '../providers/name_change_notifier.dart';
 
 
 class HomeScreen extends StatelessWidget {
@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // step3. 보통 build의 첫머리에서 state의 값을 받는다.
     //        즉, state의 변화를 계속 watch(=listen)하다가 notifyListeners()가 호출되면 변화된 값을 받아내고, UI에 반영한다.
-    //        ==> 이때 context.watch<T>()를 호출한 위젯의 build()가 자동으로 실행된다. ==> 새로운 state값을 currentName에서 받는다.
+    //        ==> 이때 "context.watch<T>()를 호출한 위젯의 build()"가 자동으로 실행된다. ==> 새로운 state값을 currentName에서 받는다.
     final currentName = context.watch<NameChangeNotifier>().name;
     final currentNumber = context.watch<NumberChangeNotifier>().num;
 

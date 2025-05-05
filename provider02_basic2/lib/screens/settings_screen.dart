@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'providers/name_change_notifier.dart';
+import '../providers/name_change_notifier.dart';
+
+
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -9,6 +11,7 @@ class SettingsScreen extends StatefulWidget {
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
 }
+
 
 class _SettingsScreenState extends State<SettingsScreen> {
   final TextEditingController controller = TextEditingController();
@@ -23,9 +26,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     // step3. 보통 build의 첫머리에서 state의 값을 받는다.
     //        즉, state의 변화를 계속 watch(=listen)하다가 notifyListeners()가 호출되면 변화된 값을 받아내고, UI에 반영한다.
-    //        ==> 이때 context.watch<T>()를 호출한 위젯의 build()가 자동으로 실행된다. ==> 새로운 state값을 currentName에서 받는다.
-
-    final notifier = context.read<NameChangeNotifier>();            // notifier 받아온다.
+    //        ==> 이때 "context.watch<T>()를 호출한 위젯의 build()"가 자동으로 실행된다. ==> 새로운 state값을 currentName에서 받는다.
+    final notifier = context.read<NameChangeNotifier>();            // notifier를 받아온다.
     // final currentName = notifier.name;                           // **(주의)** 이런 식으로 read의 결과로 받은 notifier를 사용해서 state값을 읽으면 안 된다.
     final currentName = context.watch<NameChangeNotifier>().name;   // 계속적 watch의 결과로 받은 notifier를 사용해야 state값을 제대로 감지할 수 있다.
 

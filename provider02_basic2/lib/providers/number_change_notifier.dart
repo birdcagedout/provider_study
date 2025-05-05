@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+
+// step1. ChangeNotifier를 정의할 것
 class NumberChangeNotifier extends ChangeNotifier {
   int _num;
 

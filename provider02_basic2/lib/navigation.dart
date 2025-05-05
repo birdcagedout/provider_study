@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 
-import 'challenge_screen.dart';
-import 'home_screen.dart';
-import 'settings_screen.dart';
+import 'screens/challenge_screen.dart';
+import 'screens/home_screen.dart';
+import 'screens/settings_screen.dart';
 
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+class Navigation extends StatefulWidget {
+  const Navigation({super.key});
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  State<Navigation> createState() => _NavigationState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+
+class _NavigationState extends State<Navigation> {
 
   // 바디스크린 index
   int _screenIndex = 0;
